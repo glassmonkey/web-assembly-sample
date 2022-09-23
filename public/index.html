@@ -20,7 +20,6 @@
         go.importObject
     ).then((res) => {
         wasm = res.instance
-        //document.body.textContent = `1+2=${wasm.exports.add(1,2)}`;
     })
     function calc() {
         if(one == null || two == null) {
