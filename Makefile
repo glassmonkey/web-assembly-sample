@@ -1,4 +1,7 @@
 
+.DEFAULT_GOAL := all
+all: public/main.wasm wasi.wasm
+
 .PHONY: wasm_exec.js
 wasm_exec.js:
 	cp $(shell tinygo env TINYGOROOT)/targets/wasm_exec.js public/
