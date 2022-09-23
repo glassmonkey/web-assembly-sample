@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Go wasm</title>
+</head>
+
+<body>
+<script src="wasm_exec.js"></script>
+<script>
+    const go = new Go()
+    let wasm
+    WebAssembly.instantiateStreaming(
+        fetch('main.wasm'),
+        go.importObject
+    ).then((res) => {
+        wasm = res.instance
+        document.body.textContent = `1+2=${wasm.exports.add(1,2)}`;
+    })
+</script>
+</body>
+</html>
