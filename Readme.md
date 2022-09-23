@@ -18,7 +18,8 @@ Hello, World
 ```
 
 ## Browser
-open public/index.html
+browse public/index.html
 
 The demo is adding the value of a text box.
-[!demo](doc/demo.gif)
+
+![demo](doc/demo.gif)
