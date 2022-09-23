@@ -7,15 +7,34 @@
 
 <body>
 <script src="wasm_exec.js"></script>
+<input type="text" id="one" /> +
+<input type="text" id="two" /> =
+<span id = "answer">?</span>
 <script>
     const go = new Go()
     let wasm
+    let one = null
+    let two = null
     WebAssembly.instantiateStreaming(
         fetch('main.wasm'),
         go.importObject
     ).then((res) => {
         wasm = res.instance
-        document.body.textContent = `1+2=${wasm.exports.add(1,2)}`;
+        //document.body.textContent = `1+2=${wasm.exports.add(1,2)}`;
+    })
+    function calc() {
+        if(one == null || two == null) {
+            return
+        }
+        document.getElementById('answer').textContent = wasm.exports.add(one, two)
+    }
+    document.getElementById("one").addEventListener('input', (e) => {
+        one = parseInt(e.target.value, 10)
+        calc()
+    })
+    document.getElementById("two").addEventListener('input', (e) => {
+        two = parseInt(e.target.value, 10)
+        calc()
     })
 </script>
 </body>
